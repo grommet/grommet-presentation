@@ -1,0 +1,63 @@
+//for hpe theme, use the following import instead
+//@import '~grommet/scss/hpe/index';
+
+$paragraph-large-font-size: 36px;
+
+@import 'highlight-js.github';
+@import 'grommet/scss/vanilla/index';
+
+h1.heading--huge {
+  @include inuit-font-size(72px);
+}
+
+img {
+  &.gravatar {
+    border-radius: 50%;
+  }
+}
+
+.bullets {
+
+  @include inuit-font-size(36px);
+  text-align: left;
+
+  &--small {
+    @include inuit-font-size(24px, 36px);
+  }
+
+  .bullet {
+    min-width: 100%;
+
+    > p {
+      @include inuit-font-size(30px, 36px);
+    }
+  }
+}
+
+.slides {
+  > .slides__control {
+    position: fixed;
+    z-index: 10;
+
+    &-left {
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+    }
+
+    &-right {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  &__animation-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
