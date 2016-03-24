@@ -6,96 +6,34 @@ Object.defineProperty(exports, "__esModule", {
 
 var _Bullet = require('./components/Bullet');
 
-Object.keys(_Bullet).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Bullet[key];
-    }
-  });
-});
+var _Bullet2 = _interopRequireDefault(_Bullet);
 
 var _Bullets = require('./components/Bullets');
 
-Object.keys(_Bullets).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Bullets[key];
-    }
-  });
-});
+var _Bullets2 = _interopRequireDefault(_Bullets);
 
 var _Demo = require('./components/Demo');
 
-Object.keys(_Demo).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Demo[key];
-    }
-  });
-});
+var _Demo2 = _interopRequireDefault(_Demo);
 
 var _Heading = require('./components/Heading');
 
-Object.keys(_Heading).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Heading[key];
-    }
-  });
-});
+var _Heading2 = _interopRequireDefault(_Heading);
 
 var _Presenter = require('./components/Presenter');
 
-Object.keys(_Presenter).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Presenter[key];
-    }
-  });
-});
+var _Presenter2 = _interopRequireDefault(_Presenter);
 
 var _Slide = require('./components/Slide');
 
-Object.keys(_Slide).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Slide[key];
-    }
-  });
-});
+var _Slide2 = _interopRequireDefault(_Slide);
 
 var _Slides = require('./components/Slides');
 
-Object.keys(_Slides).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Slides[key];
-    }
-  });
-});
+var _Slides2 = _interopRequireDefault(_Slides);
 
-var _presentation = require('./utils/presentation');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-Object.keys(_presentation).forEach(function (key) {
-  if (key === "default") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _presentation[key];
-    }
-  });
-});
+exports.default = { Bullet: _Bullet2.default, Bullets: _Bullets2.default, Demo: _Demo2.default, Heading: _Heading2.default, Presenter: _Presenter2.default, Slide: _Slide2.default, Slides: _Slides2.default }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+module.exports = exports['default'];

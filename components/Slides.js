@@ -77,12 +77,17 @@ var Slides = function (_Component) {
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      var currentSlide = this.props.children[this.state.activeIndex];
+      var children = this.props.children;
+
+      children = _react2.default.Children.toArray(children);
+      var currentSlide = children[this.state.activeIndex];
       (0, _presentation.setDocumentTitle)(currentSlide.props.title);
-      if (history.pushState) {
-        history.pushState(null, null, '#' + currentSlide.props.id);
-      } else {
-        location.hash = '#' + currentSlide.props.id;
+      if (currentSlide.props.id) {
+        if (history.pushState) {
+          history.pushState(null, null, '#' + currentSlide.props.id);
+        } else {
+          location.hash = '#' + currentSlide.props.id;
+        }
       }
       document.activeElement.blur();
     }
@@ -114,6 +119,7 @@ var Slides = function (_Component) {
       event.preventDefault();
       var children = this.props.children;
 
+      children = _react2.default.Children.toArray(children);
       var nextIndex = this.state.activeIndex + 1;
       var activeIndex = nextIndex > children.length - 1 ? children.length - 1 : nextIndex;
 
@@ -132,7 +138,10 @@ var Slides = function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var childCount = this.props.children.length;
+      var children = this.props.children;
+
+      children = _react2.default.Children.toArray(children);
+      var childCount = children.length;
       var controls = [];
       if (this.state.activeIndex > 0) {
         controls.push(_react2.default.createElement(_Button2.default, { key: 'previous', plain: true, a11yTitle: 'Previous Slide',
@@ -156,7 +165,7 @@ var Slides = function (_Component) {
             var x = _ref.x;
             return _react2.default.createElement(
               'div',
-              { className: CLASS_ROOT + '__animation-container', style: {
+              { className: CLASS_ROOT + '__animationcontainer', style: {
                   WebkitTransform: 'translate3d(' + x + '%, 0, 0)',
                   transform: 'translate3d(' + x + '%, 0, 0)'
                 } },
