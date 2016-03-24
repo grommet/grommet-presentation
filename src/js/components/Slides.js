@@ -117,7 +117,7 @@ export default class Slides extends Component {
               WebkitTransform: `translate3d(${x}%, 0, 0)`,
               transform: `translate3d(${x}%, 0, 0)`
             }}>
-              {this.props.children[this.state.activeIndex]}
+              {children[this.state.activeIndex]}
             </div>
           }
         </Motion>
