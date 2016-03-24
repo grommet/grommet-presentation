@@ -38,12 +38,16 @@ export default class Slides extends Component {
   }
 
   componentDidUpdate () {
-    const currentSlide = this.props.children[this.state.activeIndex];
+    let { children } = this.props;
+    children = React.Children.toArray(children);
+    const currentSlide = children[this.state.activeIndex];
     setDocumentTitle(currentSlide.props.title);
-    if (history.pushState) {
-      history.pushState(null, null, `#${currentSlide.props.id}`);
-    } else {
-      location.hash = `#${currentSlide.props.id}`;
+    if (currentSlide.props.id) {
+      if (history.pushState) {
+        history.pushState(null, null, `#${currentSlide.props.id}`);
+      } else {
+        location.hash = `#${currentSlide.props.id}`;
+      }
     }
     document.activeElement.blur();
   }
@@ -68,7 +72,8 @@ export default class Slides extends Component {
 
   _onNext (event) {
     event.preventDefault();
-    const { children } = this.props;
+    let { children } = this.props;
+    children = React.Children.toArray(children);
     const nextIndex = this.state.activeIndex + 1;
     const activeIndex = (nextIndex > children.length - 1) ?
         children.length - 1 : nextIndex;
@@ -84,7 +89,9 @@ export default class Slides extends Component {
   }
 
   render () {
-    const childCount = this.props.children.length;
+    let { children } = this.props;
+    children = React.Children.toArray(children);
+    const childCount = children.length;
     let controls = [];
     if (this.state.activeIndex > 0) {
       controls.push(
@@ -106,7 +113,7 @@ export default class Slides extends Component {
         <Motion key={this.state.activeIndex}
           defaultStyle={{x: 20}} style={{x: spring(0)}}>
           {({x}) =>
-            <div className={`${CLASS_ROOT}__animation-container`} style={{
+            <div className={`${CLASS_ROOT}__animationcontainer`} style={{
               WebkitTransform: `translate3d(${x}%, 0, 0)`,
               transform: `translate3d(${x}%, 0, 0)`
             }}>

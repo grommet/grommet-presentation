@@ -1,10 +1,11 @@
 // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-export * from './components/Bullet';
-export * from './components/Bullets';
-export * from './components/Demo';
-export * from './components/Heading';
-export * from './components/Presenter';
-export * from './components/Slide';
-export * from './components/Slides';
-export * from './utils/presentation';
+import Bullet from './components/Bullet';
+import Bullets from './components/Bullets';
+import Demo from './components/Demo';
+import Heading from './components/Heading';
+import Presenter from './components/Presenter';
+import Slide from './components/Slide';
+import Slides from './components/Slides';
+
+export default {Bullet, Bullets, Demo, Heading, Presenter, Slide, Slides};
