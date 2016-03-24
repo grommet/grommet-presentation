@@ -1,7 +1,7 @@
 {
   "name": "grommet-presentation",
   "version": "0.1.0",
-  "main": "src/js/index.js",
+  "main": "index.js",
   "description": "Small framework for creating Grommet-based presentations.",
   "author": "Alan Souza",
   "homepage": "http://grommet.io",
@@ -34,8 +34,5 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "mkdirp": "^0.5.1"
-  },
-  "scripts": {
-    "build": "gulp dist"
   }
 }
