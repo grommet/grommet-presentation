@@ -169,7 +169,7 @@ var Slides = function (_Component) {
                   WebkitTransform: 'translate3d(' + x + '%, 0, 0)',
                   transform: 'translate3d(' + x + '%, 0, 0)'
                 } },
-              _this3.props.children[_this3.state.activeIndex]
+              children[_this3.state.activeIndex]
             );
           }
         ),
