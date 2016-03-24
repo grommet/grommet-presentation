@@ -4,7 +4,7 @@ Small framework for creating Grommet-based presentations.
 
 ### Example
 
-See this [codepen](http://copen.io)
+See this [codepen](http://codepen.io/alansouzati/pen/xVdeKa?editors=0010)
 
 ### Install
 
