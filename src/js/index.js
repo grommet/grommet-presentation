@@ -5,7 +5,10 @@ import Bullets from './components/Bullets';
 import Demo from './components/Demo';
 import Heading from './components/Heading';
 import Presenter from './components/Presenter';
+import Quote from './components/Quote';
 import Slide from './components/Slide';
 import Slides from './components/Slides';
 
-export default {Bullet, Bullets, Demo, Heading, Presenter, Slide, Slides};
+export default {
+  Bullet, Bullets, Demo, Heading, Presenter, Quote, Slide, Slides
+};

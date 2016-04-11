@@ -66,6 +66,8 @@ export default class Slides extends Component {
           this.setState({activeIndex: index});
           return true;
         }
+
+        return false;
       }, this);
     }
   }

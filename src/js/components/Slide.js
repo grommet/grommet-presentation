@@ -18,9 +18,9 @@ export default class Slide extends Component {
 
     return (
       <Section full={true} pad='large' justify={this.props.justify}>
-        <Box align='start' {...this.props} pad={{vertical: 'large'}}>
+        <Box align='start' pad={{vertical: 'large'}}>
           {titleNode}
-          <Box full='horizontal'>
+          <Box full='horizontal' {...this.props}>
             {children}
           </Box>
         </Box>

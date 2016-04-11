@@ -1,6 +1,6 @@
 {
   "name": "grommet-presentation",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "src/js/index.js",
   "description": "Small framework for creating Grommet-based presentations.",
   "author": "Alan Souza",
@@ -28,6 +28,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "del": "^2.0.2",
+    "grommet-toolbox": "^0.1.13",
     "gulp": "^3.8.11",
     "gulp-cssnano": "^2.1.1",
     "gulp-git": "^1.6.0",
