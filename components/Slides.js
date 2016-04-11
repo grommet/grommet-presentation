@@ -110,6 +110,8 @@ var Slides = function (_Component) {
             _this2.setState({ activeIndex: index });
             return true;
           }
+
+          return false;
         }, this);
       }
     }

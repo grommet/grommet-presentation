@@ -61,3 +61,12 @@ img {
     overflow-y: auto;
   }
 }
+
+.quote {
+  font-style: italic;
+  text-align: right;
+
+  &__author {
+    font-style: normal;
+  }
+}

@@ -62,11 +62,11 @@ var Slide = function (_Component) {
         { full: true, pad: 'large', justify: this.props.justify },
         _react2.default.createElement(
           _Box2.default,
-          _extends({ align: 'start' }, this.props, { pad: { vertical: 'large' } }),
+          { align: 'start', pad: { vertical: 'large' } },
           titleNode,
           _react2.default.createElement(
             _Box2.default,
-            { full: 'horizontal' },
+            _extends({ full: 'horizontal' }, this.props),
             children
           )
         )
