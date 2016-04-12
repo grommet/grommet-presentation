@@ -59,16 +59,12 @@ var Slide = function (_Component) {
 
       return _react2.default.createElement(
         _Section2.default,
-        { full: true, pad: 'large', justify: this.props.justify },
+        _extends({}, this.props, { pad: 'large' }),
         _react2.default.createElement(
           _Box2.default,
-          { align: 'start', pad: { vertical: 'large' } },
+          { pad: { vertical: 'large' } },
           titleNode,
-          _react2.default.createElement(
-            _Box2.default,
-            _extends({ full: 'horizontal' }, this.props),
-            children
-          )
+          children
         )
       );
     }
@@ -79,6 +75,10 @@ var Slide = function (_Component) {
 
 exports.default = Slide;
 ;
+
+Slide.defaultProps = {
+  full: 'horizontal'
+};
 
 Slide.PropTypes = {
   id: _react.PropTypes.string,

@@ -20,6 +20,10 @@ var _Button = require('grommet/components/Button');
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _Footer = require('grommet/components/Footer');
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 var _KeyboardAccelerators = require('grommet/utils/KeyboardAccelerators');
 
 var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
@@ -31,6 +35,10 @@ var _LinkNext2 = _interopRequireDefault(_LinkNext);
 var _LinkPrevious = require('grommet/components/icons/base/LinkPrevious');
 
 var _LinkPrevious2 = _interopRequireDefault(_LinkPrevious);
+
+var _Responsive = require('grommet/utils/Responsive');
+
+var _Responsive2 = _interopRequireDefault(_Responsive);
 
 var _presentation = require('../utils/presentation');
 
@@ -57,9 +65,11 @@ var Slides = function (_Component) {
     _this._loadCurrentSlide = _this._loadCurrentSlide.bind(_this);
     _this._onPrevious = _this._onPrevious.bind(_this);
     _this._onNext = _this._onNext.bind(_this);
+    _this._onResponsive = _this._onResponsive.bind(_this);
 
     _this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      bottomControl: false
     };
     return _this;
   }
@@ -73,6 +83,8 @@ var Slides = function (_Component) {
       this._loadCurrentSlide();
 
       window.addEventListener('hashchange', this._loadCurrentSlide);
+
+      this._responsive = _Responsive2.default.start(this._onResponsive);
     }
   }, {
     key: 'componentDidUpdate',
@@ -96,6 +108,13 @@ var Slides = function (_Component) {
     value: function componentWillUnmount() {
       _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keys);
       window.removeEventListener('hashchange', this._loadCurrentSlide);
+
+      this._responsive.stop();
+    }
+  }, {
+    key: '_onResponsive',
+    value: function _onResponsive(small) {
+      this.setState({ bottomControl: small });
     }
   }, {
     key: '_loadCurrentSlide',
@@ -138,44 +157,65 @@ var Slides = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
-
       var children = this.props.children;
+      var _state = this.state;
+      var bottomControl = _state.bottomControl;
+      var activeIndex = _state.activeIndex;
 
       children = _react2.default.Children.toArray(children);
       var childCount = children.length;
-      var controls = [];
-      if (this.state.activeIndex > 0) {
-        controls.push(_react2.default.createElement(_Button2.default, { key: 'previous', plain: true, a11yTitle: 'Previous Slide',
-          className: CONTROL_CLASS_PREFIX + '-left',
-          onClick: this._onPrevious, icon: _react2.default.createElement(_LinkPrevious2.default, { size: 'large' }) }));
+      var previousButton = void 0;
+      var nextButton = void 0;
+      if (activeIndex > 0) {
+        var previousClassName = bottomControl ? undefined : CONTROL_CLASS_PREFIX + '-left';
+        previousButton = _react2.default.createElement(_Button2.default, { key: 'previous', plain: true, a11yTitle: 'Previous Slide',
+          className: previousClassName,
+          onClick: this._onPrevious, icon: _react2.default.createElement(_LinkPrevious2.default, { size: 'large' }) });
       }
-      if (this.state.activeIndex < childCount - 1) {
-        controls.push(_react2.default.createElement(_Button2.default, { key: 'next', plain: true, a11yTitle: 'Next Slide',
-          className: CONTROL_CLASS_PREFIX + '-right',
-          onClick: this._onNext, icon: _react2.default.createElement(_LinkNext2.default, { size: 'large' }) }));
+      if (activeIndex < childCount - 1) {
+        var nextClassName = bottomControl ? undefined : CONTROL_CLASS_PREFIX + '-right';
+
+        nextButton = _react2.default.createElement(_Button2.default, { key: 'next', plain: true, a11yTitle: 'Next Slide',
+          className: nextClassName,
+          onClick: this._onNext, icon: _react2.default.createElement(_LinkNext2.default, { size: 'large' }) });
       }
 
+      var controlsNode = [previousButton, nextButton];
+      if (bottomControl) {
+        controlsNode = _react2.default.createElement(
+          _Footer2.default,
+          { direction: 'row', align: 'center', justify: 'between' },
+          previousButton || _react2.default.createElement('span', { style: { width: '72px' } }),
+          _react2.default.createElement(
+            'span',
+            null,
+            activeIndex + 1,
+            ' of ',
+            children.length
+          ),
+          nextButton || _react2.default.createElement('span', { style: { width: '72px' } })
+        );
+      }
       return _react2.default.createElement(
         _Box2.default,
         { direction: 'row', className: CLASS_ROOT },
         _react2.default.createElement(
           _reactMotion.Motion,
-          { key: this.state.activeIndex,
-            defaultStyle: { x: 20 }, style: { x: (0, _reactMotion.spring)(0) } },
+          { key: activeIndex,
+            defaultStyle: { x: 30 }, style: { x: (0, _reactMotion.spring)(0) } },
           function (_ref) {
             var x = _ref.x;
             return _react2.default.createElement(
               'div',
-              { className: CLASS_ROOT + '__animationcontainer', style: {
-                  WebkitTransform: 'translate3d(' + x + '%, 0, 0)',
-                  transform: 'translate3d(' + x + '%, 0, 0)'
+              { className: 'flex', style: {
+                  WebkitTransform: 'translateX(' + x + '%)',
+                  transform: 'translateX(' + x + '%)'
                 } },
-              children[_this3.state.activeIndex]
+              children[activeIndex]
             );
           }
         ),
-        controls
+        controlsNode
       );
     }
   }]);

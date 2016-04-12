@@ -139,7 +139,7 @@ var Demo = function (_Component) {
       }
       return _react2.default.createElement(
         _Box2.default,
-        { full: 'horizontal' },
+        { pad: { horizontal: 'small' } },
         _react2.default.createElement(
           _Paragraph2.default,
           { size: 'large' },
