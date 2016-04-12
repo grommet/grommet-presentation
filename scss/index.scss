@@ -16,6 +16,10 @@ img {
   }
 }
 
+pre code {
+  @include inuit-font-size(36px);
+}
+
 .bullets {
 
   @include inuit-font-size(36px);
