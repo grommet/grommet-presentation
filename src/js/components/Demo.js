@@ -74,7 +74,7 @@ export default class Demo extends Component {
       justify = 'between';
     }
     return (
-      <Box full='horizontal'>
+      <Box pad={{horizontal: 'small'}}>
         <Paragraph size='large'>
           {explanation}
         </Paragraph>

@@ -17,16 +17,18 @@ export default class Slide extends Component {
     }
 
     return (
-      <Section full={true} pad='large' justify={this.props.justify}>
-        <Box align='start' pad={{vertical: 'large'}}>
+      <Section {...this.props} pad='large'>
+        <Box pad={{vertical: 'large'}}>
           {titleNode}
-          <Box full='horizontal' {...this.props}>
-            {children}
-          </Box>
+          {children}
         </Box>
       </Section>
     );
   }
+};
+
+Slide.defaultProps = {
+  full: 'horizontal'
 };
 
 Slide.PropTypes = {

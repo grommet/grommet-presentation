@@ -5,9 +5,12 @@ import { Motion, spring } from 'react-motion';
 
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
+import Footer from 'grommet/components/Footer';
 import KeyboardAccelerators from 'grommet/utils/KeyboardAccelerators';
 import NextIcon from 'grommet/components/icons/base/LinkNext';
 import PreviousIcon from 'grommet/components/icons/base/LinkPrevious';
+
+import Responsive from 'grommet/utils/Responsive';
 
 import { setDocumentTitle } from '../utils/presentation';
 
@@ -22,9 +25,11 @@ export default class Slides extends Component {
     this._loadCurrentSlide = this._loadCurrentSlide.bind(this);
     this._onPrevious = this._onPrevious.bind(this);
     this._onNext = this._onNext.bind(this);
+    this._onResponsive = this._onResponsive.bind(this);
 
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      bottomControl: false
     };
   }
 
@@ -35,6 +40,8 @@ export default class Slides extends Component {
     this._loadCurrentSlide();
 
     window.addEventListener('hashchange', this._loadCurrentSlide);
+
+    this._responsive = Responsive.start(this._onResponsive);
   }
 
   componentDidUpdate () {
@@ -55,8 +62,13 @@ export default class Slides extends Component {
   componentWillUnmount () {
     KeyboardAccelerators.stopListeningToKeyboard(this, this._keys);
     window.removeEventListener('hashchange', this._loadCurrentSlide);
+
+    this._responsive.stop();
   }
 
+  _onResponsive (small) {
+    this.setState({bottomControl: small});
+  }
   _loadCurrentSlide () {
     if (location.hash) {
       const children = React.Children.toArray(this.props.children);
@@ -92,38 +104,57 @@ export default class Slides extends Component {
 
   render () {
     let { children } = this.props;
+    let { bottomControl, activeIndex } = this.state;
     children = React.Children.toArray(children);
     const childCount = children.length;
-    let controls = [];
-    if (this.state.activeIndex > 0) {
-      controls.push(
+    let previousButton;
+    let nextButton;
+    if (activeIndex > 0) {
+      const previousClassName = (
+        bottomControl ? undefined : `${CONTROL_CLASS_PREFIX}-left`
+      );
+      previousButton = (
         <Button key="previous" plain={true} a11yTitle='Previous Slide'
-          className={`${CONTROL_CLASS_PREFIX}-left`}
+          className={previousClassName}
           onClick={this._onPrevious} icon={<PreviousIcon size="large" />} />
       );
     }
-    if (this.state.activeIndex < (childCount - 1)) {
-      controls.push(
+    if (activeIndex < (childCount - 1)) {
+      const nextClassName = (
+        bottomControl ? undefined : `${CONTROL_CLASS_PREFIX}-right`
+      );
+
+      nextButton = (
         <Button key="next" plain={true} a11yTitle='Next Slide'
-          className={`${CONTROL_CLASS_PREFIX}-right`}
+          className={nextClassName}
           onClick={this._onNext} icon={<NextIcon size="large" />} />
       );
     }
 
+    let controlsNode = [previousButton, nextButton];
+    if (bottomControl) {
+      controlsNode = (
+        <Footer direction='row' align='center' justify='between'>
+          {previousButton || <span style={{width: '72px'}} />}
+          <span>{activeIndex + 1} of {children.length}</span>
+          {nextButton || <span style={{width: '72px'}} />}
+        </Footer>
+      );
+    }
     return (
       <Box direction='row' className={CLASS_ROOT}>
-        <Motion key={this.state.activeIndex}
-          defaultStyle={{x: 20}} style={{x: spring(0)}}>
+        <Motion key={activeIndex}
+          defaultStyle={{x: 30}} style={{x: spring(0)}}>
           {({x}) =>
-            <div className={`${CLASS_ROOT}__animationcontainer`} style={{
-              WebkitTransform: `translate3d(${x}%, 0, 0)`,
-              transform: `translate3d(${x}%, 0, 0)`
+            <div className='flex' style={{
+              WebkitTransform: `translateX(${x}%)`,
+              transform: `translateX(${x}%)`
             }}>
-              {children[this.state.activeIndex]}
+              {children[activeIndex]}
             </div>
           }
         </Motion>
-        {controls}
+        {controlsNode}
       </Box>
     );
   }
