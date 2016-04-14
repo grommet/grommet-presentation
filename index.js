@@ -12,6 +12,10 @@ var _Bullets = require('./components/Bullets');
 
 var _Bullets2 = _interopRequireDefault(_Bullets);
 
+var _Code = require('./components/Code');
+
+var _Code2 = _interopRequireDefault(_Code);
+
 var _Demo = require('./components/Demo');
 
 var _Demo2 = _interopRequireDefault(_Demo);
@@ -42,8 +46,9 @@ var _Slides2 = _interopRequireDefault(_Slides);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = {
-  Bullet: _Bullet2.default, Bullets: _Bullets2.default, Demo: _Demo2.default, LiveDemo: _LiveDemo2.default, Heading: _Heading2.default, Presenter: _Presenter2.default, Quote: _Quote2.default, Slide: _Slide2.default, Slides: _Slides2.default
-}; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
+exports.default = {
+  Bullet: _Bullet2.default, Bullets: _Bullets2.default, Code: _Code2.default, Demo: _Demo2.default, LiveDemo: _LiveDemo2.default, Heading: _Heading2.default, Presenter: _Presenter2.default, Quote: _Quote2.default, Slide: _Slide2.default, Slides: _Slides2.default
+};
 module.exports = exports['default'];
