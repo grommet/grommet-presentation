@@ -2,6 +2,7 @@
 
 import Bullet from './components/Bullet';
 import Bullets from './components/Bullets';
+import Code from './components/Code';
 import Demo from './components/Demo';
 import LiveDemo from './components/LiveDemo';
 import Heading from './components/Heading';
@@ -11,5 +12,5 @@ import Slide from './components/Slide';
 import Slides from './components/Slides';
 
 export default {
-  Bullet, Bullets, Demo, LiveDemo, Heading, Presenter, Quote, Slide, Slides
+  Bullet, Bullets, Code, Demo, LiveDemo, Heading, Presenter, Quote, Slide, Slides
 };
