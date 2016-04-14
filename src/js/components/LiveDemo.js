@@ -51,7 +51,7 @@ export default class LiveDemo extends Component {
     }
 
     return (
-      <Tiles fill={true}>
+      <Tiles fill={true} flush={false}>
         <Tile pad='small'>
           <textarea ref='codeTextarea' onChange={this._updateCode}
             className='code-editor' rows='10' value={code} />

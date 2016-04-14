@@ -57,6 +57,7 @@ export default class Slides extends Component {
       }
     }
     document.activeElement.blur();
+    document.body.scrollTop = 0;
   }
 
   componentWillUnmount () {
@@ -69,6 +70,7 @@ export default class Slides extends Component {
   _onResponsive (small) {
     this.setState({bottomControl: small});
   }
+
   _loadCurrentSlide () {
     if (location.hash) {
       const children = React.Children.toArray(this.props.children);
