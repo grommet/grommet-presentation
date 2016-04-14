@@ -24,6 +24,10 @@ var _Section = require('grommet/components/Section');
 
 var _Section2 = _interopRequireDefault(_Section);
 
+var _Responsive = require('grommet/utils/Responsive');
+
+var _Responsive2 = _interopRequireDefault(_Responsive);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,15 +42,40 @@ var Slide = function (_Component) {
   function Slide() {
     _classCallCheck(this, Slide);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Slide).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Slide).call(this));
+
+    _this._onResponsive = _this._onResponsive.bind(_this);
+
+    _this.state = {
+      horizontalPad: 'large'
+    };
+    return _this;
   }
 
   _createClass(Slide, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this._responsive = _Responsive2.default.start(this._onResponsive);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this._responsive.stop();
+    }
+  }, {
+    key: '_onResponsive',
+    value: function _onResponsive(small) {
+      if (small) {
+        this.setState({ horizontalPad: undefined });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _props = this.props;
       var children = _props.children;
       var title = _props.title;
+      var horizontalPad = this.state.horizontalPad;
 
       var titleNode = void 0;
       if (title) {
@@ -62,7 +91,7 @@ var Slide = function (_Component) {
         _extends({}, this.props, { pad: 'large' }),
         _react2.default.createElement(
           _Box2.default,
-          { pad: { vertical: 'large' } },
+          { pad: { vertical: 'large', horizontal: horizontalPad } },
           titleNode,
           children
         )

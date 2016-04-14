@@ -86,7 +86,7 @@ var LiveDemo = function (_Component) {
 
       return _react2.default.createElement(
         _Tiles2.default,
-        { fill: true },
+        { fill: true, flush: false },
         _react2.default.createElement(
           _Tile2.default,
           { pad: 'small' },

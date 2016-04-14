@@ -102,6 +102,7 @@ var Slides = function (_Component) {
         }
       }
       document.activeElement.blur();
+      document.body.scrollTop = 0;
     }
   }, {
     key: 'componentWillUnmount',
