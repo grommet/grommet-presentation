@@ -48,7 +48,7 @@ var Quote = function Quote(props) {
     { className: CLASS_ROOT, pad: { vertical: 'small' } },
     _react2.default.createElement(
       _Heading2.default,
-      { label: content, justify: 'end' },
+      { justify: 'end' },
       '"' + children + '"'
     ),
     _react2.default.createElement(
