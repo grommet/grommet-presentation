@@ -22,7 +22,7 @@ const Quote = (props) => {
 
   return (
     <Box className={CLASS_ROOT} pad={{vertical: 'small'}}>
-      <Heading label={content} justify='end'>
+      <Heading justify='end'>
         {`"${children}"`}
       </Heading>
       <Box direction='row' justify='end' pad={{vertical: 'small'}}>
